@@ -15,6 +15,7 @@ for which a new license (GPL+exception) is in place.
 #include <QResizeEvent>
 #include <QSettings>
 #include <QInputDialog>
+#include <QDebug>
 
 #include "dataviewer.h"
 //#include "dataexportdialog.h"
@@ -108,7 +109,7 @@ DataViewer::~DataViewer()
 
 bool DataViewer::setTableModel(QAbstractItemModel * model, bool showButtons)
 {
-	SqlTableModel * old = qobject_cast<SqlTableModel*>(ui.tableView->model());
+        SqlTableModel * old = qobject_cast<SqlTableModel*>(ui.tableView->model());
 	if (old && old->pendingTransaction())
 	{
 		int com = QMessageBox::question(this, tr("Sqliteman"),
@@ -234,18 +235,20 @@ void DataViewer::setShowButtons(bool show)
 
 void DataViewer::addRow()
 {
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
-	if(model)
-	{
-		model->insertRows(model->rowCount(), 1);
-		ui.tableView->scrollToBottom();
-		setShowButtons(true);
-	}
+    qDebug()<<"DataViewer::addRow()";
+    SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+    if(model)
+    {
+        qDebug()<<"cast run";
+        model->insertRows(model->rowCount(), 1);
+        ui.tableView->scrollToBottom();
+        setShowButtons(true);
+    }
 }
 
 void DataViewer::removeRow()
 {
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
 	if(model)
 	{
 		model->removeRows(ui.tableView->currentIndex().row(), 1);
@@ -261,7 +264,7 @@ void DataViewer::truncateTable()
 	if(ret == QMessageBox::No)
 		return;
 
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
 	if (!model)
 		return;
 
@@ -305,11 +308,16 @@ QStringList DataViewer::tableHeader()
 
 void DataViewer::commit()
 {
+    qDebug()<<"DataViewer::commit()";
 	// HACK: some Qt4 versions crash on commit/rollback when there
 	// is a new - currently edited - row in a transaction. This
 	// forces to close the editor/delegate.
 	ui.tableView->selectRow(ui.tableView->currentIndex().row());
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        if(!model){
+            qDebug()<<"NULL";
+            return;
+        }
 	if (!model->submitAll())
 	{
 		int ret = QMessageBox::question(this, tr("Sqliteman"),
@@ -332,7 +340,7 @@ void DataViewer::rollback()
 	// is a new - currently edited - row in a transaction. This
 	// forces to close the editor/delegate.
 	ui.tableView->selectRow(ui.tableView->currentIndex().row());
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
 	model->revertAll();
 	model->setPendingTransaction(false);
 	resizeViewToContents(model);
@@ -373,7 +381,7 @@ void DataViewer::copyHandler()
 void DataViewer::openStandaloneWindow()
 {
 	SqlQueryModel *qm;
-	SqlTableModel *tm = qobject_cast<SqlTableModel*>(ui.tableView->model());
+        SqlTableModel *tm = qobject_cast<SqlTableModel*>(ui.tableView->model());
 
 #ifdef WIN32
     // win windows are always top when there is this parent
@@ -420,7 +428,7 @@ void DataViewer::handleBlobPreview(bool state)
 
 void DataViewer::tableView_selectionChanged(const QItemSelection &, const QItemSelection &)
 {
-	SqlTableModel *tm = qobject_cast<SqlTableModel*>(ui.tableView->model());
+        SqlTableModel *tm = qobject_cast<SqlTableModel*>(ui.tableView->model());
     bool enable = (tm != 0);
     actInsertNull->setEnabled(enable);
     actOpenEditor->setEnabled(enable);
@@ -496,7 +504,7 @@ void DataViewer::gotoLine()
 		return;
 
 	QModelIndex left;
-	SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+        SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
 	int column = ui.tableView->currentIndex().isValid() ? ui.tableView->currentIndex().column() : 0;
 	row -= 1;
 

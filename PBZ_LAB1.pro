@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     dataviewer.cpp \
     sqlmodels.cpp \
     blobpreviewwidget.cpp \
-    sqlitemview.cpp
+    sqlitemview.cpp \
+    preferences.cpp
 
 HEADERS  += mainwindow.h \
     tablesviewer.h \
@@ -34,7 +35,10 @@ HEADERS  += mainwindow.h \
     sqlmodels.h \
     blobpreviewwidget.h \
     sqlitemview.h \
-    dataviewer.h
+    dataviewer.h \
+    preferences.h \
+    ui_dataviewer.h
+
 
 FORMS    += mainwindow.ui \
     tablesviewer.ui \
@@ -45,7 +49,15 @@ FORMS    += mainwindow.ui \
     sqlitemview.ui
 
 RESOURCES += \
-    icons/icons.qrc
+    icons/icons.qrc \
+    ts/ts.qrc
+
+
+
+
+
+
+
 
 
 

@@ -139,14 +139,14 @@ SqlTableModel::SqlTableModel(QObject * parent, QSqlDatabase db)
 	m_schema("")
 {
 	m_deleteCache.clear();
-//	Preferences * prefs = Preferences::instance();
-//	m_useNull = prefs->nullHighlight();
-//	m_nullColor = prefs->nullHighlightColor();
-//	m_nullText = prefs->nullHighlightText();
-//	m_useBlob = prefs->blobHighlight();
-//	m_blobColor = prefs->blobHighlightColor();
-//	m_blobText = prefs->blobHighlightText();
-//	m_cropColumns = prefs->cropColumns();
+//        Preferences * prefs = Preferences::instance();
+        m_useNull = true;
+        m_nullColor = QColor(Qt::red);
+        m_nullText = "{null}";
+        m_useBlob = true;
+        m_blobColor = QColor(Qt::blue);
+        m_blobText = "{blob_text}";
+        m_cropColumns = true;
 
 	connect(this, SIGNAL(primeInsert(int, QSqlRecord &)),
 			this, SLOT(doPrimeInsert(int, QSqlRecord &)));

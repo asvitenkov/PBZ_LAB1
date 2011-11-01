@@ -39,6 +39,7 @@ private:
     DataViewer *dataViewer;
     QSqlTableModel *model;
     SchemaBrowser *schemaBrowser;
+    void createWindow();
 
 
 private slots:

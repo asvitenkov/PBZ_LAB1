@@ -158,7 +158,7 @@ public:
 
         gridLayout4->addWidget(extensionTableView, 0, 0, 1, 1);
 
-        schemaTabWidget->addTab(extensionTab, QString());
+        //schemaTabWidget->addTab(extensionTab, QString());
 
         gridLayout->addWidget(schemaTabWidget, 0, 0, 1, 1);
 

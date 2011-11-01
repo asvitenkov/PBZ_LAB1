@@ -3,6 +3,7 @@
 #include <QtSql>
 #include <QtGui>
 #include "dataviewer.h"
+#include "sqlmodels.h"
 
 
 static bool createConnection()
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!createConnection()) {
         exit(-1);
     }
+    createWindow();
 //    TablesViewer *tv = new TablesViewer();
 //    tv->initialize();
 //    tv->show();
@@ -36,15 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(queryDialog,SIGNAL(accepted()),this,SLOT(queryExec()));
 //    queryDialog->exec();
 
-    schemaBrowser = new SchemaBrowser(0,Qt::Widget);
-    schemaBrowser->tableTree->buildTree();
-    schemaBrowser->buildPragmasTree();
-    schemaBrowser->show();
 
-
-
-    connect(schemaBrowser->tableTree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
-            this, SLOT(treeItemActivated(QTreeWidgetItem *, int)));
 
 
 
@@ -64,10 +58,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    dataViewer = new DataViewer();
-    dataViewer->setEnabled(true);
-    dataViewer->show();
+//    dataViewer = new DataViewer();
+//    dataViewer->setEnabled(true);
+//    dataViewer->show();
     //dataViewer->setTableModel(new QSqlQueryModel(), false);
+
 }
 
 MainWindow::~MainWindow()
@@ -100,18 +95,43 @@ void MainWindow::treeItemActivated(QTreeWidgetItem * item, int /*column*/)
                 dataViewer->freeResources();
                 if (item->type() == TableTree::ViewType || item->type() == TableTree::SystemType)
                 {
-                    QSqlQueryModel * model = new QSqlQueryModel();
+                    SqlQueryModel * model = new SqlQueryModel();
                     model->setQuery(QString("select * from \"%1\".\"%2\"").arg(item->text(1)).arg(item->text(0)));
                     dataViewer->setTableModel(model, false);
                 }
                 else
                 {
-                        QSqlTableModel * model = new QSqlTableModel();
+                        SqlTableModel * model = new SqlTableModel();
                         //model->setSchema(item->text(1));
                         model->setTable(item->text(0));
                         model->select();
-                        model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+                        model->setEditStrategy(SqlTableModel::OnManualSubmit);
                         dataViewer->setTableModel(model, true);
                 }
         }
+}
+
+
+
+void MainWindow::createWindow(){
+    schemaBrowser = new SchemaBrowser(0,Qt::Widget);
+    schemaBrowser->tableTree->buildTree();
+    schemaBrowser->buildPragmasTree();
+    schemaBrowser->show();
+    schemaBrowser->setMinimumWidth(200);
+
+
+    connect(schemaBrowser->tableTree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
+            this, SLOT(treeItemActivated(QTreeWidgetItem *, int)));
+
+
+    dataViewer = new DataViewer();
+    dataViewer->setEnabled(true);
+    dataViewer->show();
+    //dataViewer->setTableModel(new QSqlQueryModel(), false);
+
+    //ui->pushButton->hide();
+    ui->myLayout->addWidget(schemaBrowser);
+    ui->myLayout->addWidget(dataViewer);
+
 }
