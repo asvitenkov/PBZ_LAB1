@@ -259,20 +259,18 @@
    <header>sqleditorwidget.h</header>
   </customwidget>
   <customwidget>
-   <class>SqlItemView</class>
-   <extends>QWidget</extends>
-   <header>sqlitemview.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>BlobPreviewWidget</class>
    <extends>QWidget</extends>
    <header>blobpreviewwidget.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>SqlItemView</class>
+   <extends>QWidget</extends>
+   <header>sqlitemview.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
- <resources>
-  <include location="icons/icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

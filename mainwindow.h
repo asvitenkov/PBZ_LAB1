@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include "queryeditordialog.h"
 #include "schemabrowser.h"
+#include "dataviewer.h"
 
 
 //typedef struct
@@ -35,10 +36,15 @@ public:
 private:
     Ui::MainWindow *ui;
     QueryEditorDialog *queryDialog;
+    DataViewer *dataViewer;
+    QSqlTableModel *model;
+    SchemaBrowser *schemaBrowser;
 
 
 private slots:
     void queryExec();
+    void testSlot();
+    void treeItemActivated(QTreeWidgetItem * item, int column);
 };
 
 #endif // MAINWINDOW_H
