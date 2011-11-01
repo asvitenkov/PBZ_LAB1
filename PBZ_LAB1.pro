@@ -18,7 +18,11 @@ SOURCES += main.cpp\
     schemabrowser.cpp \
     extensionmodel.cpp \
     tabletree.cpp \
-    utils.cpp
+    utils.cpp \
+    dataviewer.cpp \
+    sqlmodels.cpp \
+    blobpreviewwidget.cpp \
+    sqlitemview.cpp
 
 HEADERS  += mainwindow.h \
     tablesviewer.h \
@@ -26,15 +30,33 @@ HEADERS  += mainwindow.h \
     schemabrowser.h \
     extensionmodel.h \
     tabletree.h \
-    utils.h
+    utils.h \
+    sqlmodels.h \
+    blobpreviewwidget.h \
+    sqlitemview.h \
+    dataviewer.h
 
 FORMS    += mainwindow.ui \
     tablesviewer.ui \
     queryeditordialog.ui \
-    schemabrowser.ui
+    schemabrowser.ui \
+    dataviewer.ui \
+    blobpreviewwidget.ui \
+    sqlitemview.ui
 
 RESOURCES += \
     icons/icons.qrc
+
+
+
+
+
+
+
+
+
+
+
 
 
 

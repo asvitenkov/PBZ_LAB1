@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QtSql>
 #include <QtGui>
+#include "dataviewer.h"
 
 
 static bool createConnection()
@@ -42,13 +43,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-//    QSqlTableModel *model = new QSqlTableModel();
-//    model->setTable("mus_group");
-//    model->select();
-//    model->setEditStrategy(QSqlTableModel::OnFieldChange);
-//    QTableView *table = new QTableView();
-//    table->show();
-//    table->setModel(model);
+    QSqlTableModel *model = new QSqlTableModel();
+    model->setTable("mus_group");
+    model->select();
+    model->setEditStrategy(QSqlTableModel::OnFieldChange);
+    QTableView *table = new QTableView();
+    table->show();
+    table->setModel(model);
+
+
+
+    DataViewer *dataViewer = new DataViewer();
+    dataViewer->setEnabled(true);
+    dataViewer->show();
+    //dataViewer->setTableModel(new QSqlQueryModel(), false);
 }
 
 MainWindow::~MainWindow()

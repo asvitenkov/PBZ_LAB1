@@ -42,6 +42,27 @@ typedef QList<DatabaseTableField> FieldList;
 typedef QMap<QString,QString> DbObjects;
 
 
+//DbObjects getObjects(const QString type, const QString schema)
+//{
+//        DbObjects objs;
+
+//        QString sql;
+//        if (type.isNull())
+//                sql = QString("SELECT lower(name), lower(tbl_name) FROM \"%1\".sqlite_master;").arg(schema);
+//        else
+//                sql = QString("SELECT lower(name), lower(tbl_name) FROM \"%1\".sqlite_master WHERE type = '%2' and name not like 'sqlite_%';").arg(schema).arg(type);
+
+//        QSqlQuery query(sql);
+//        while(query.next())
+//                objs.insertMulti(query.value(1).toString(), query.value(0).toString());
+
+//        if(query.lastError().isValid())
+//                //exception(tr("Error while the list of %1: %2.").arg(type).arg(query.lastError().text()));
+
+//        return objs;
+//}
+
+
 DbObjects getObjects(const QString type, const QString schema)
 {
         DbObjects objs;
@@ -63,7 +84,7 @@ DbObjects getObjects(const QString type, const QString schema)
 }
 
 
-DbObjects getSysObjects(const QString & schema)
+DbObjects getSysObjectsTableTree(const QString & schema)
 {
         DbObjects objs;
 
@@ -332,7 +353,7 @@ void TableTree::buildCatalogue(QTreeWidgetItem * systemItem, const QString & sch
 {
 	deleteChildren(systemItem);
 
-        QStringList values = getSysObjects(schema).keys();
+        QStringList values = getSysObjectsTableTree(schema).keys();
 	systemItem->setText(0, trLabel(trSys).arg(values.size()));
 	systemItem->setText(1, schema);
 	foreach(QString i, values)
