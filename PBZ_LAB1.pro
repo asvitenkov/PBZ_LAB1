@@ -17,8 +17,8 @@ SOURCES += main.cpp\
     queryeditordialog.cpp \
     schemabrowser.cpp \
     extensionmodel.cpp \
-    tabletree.cpp \
     utils.cpp \
+    tabletree.cpp \
     dataviewer.cpp \
     sqlmodels.cpp \
     blobpreviewwidget.cpp \
@@ -37,7 +37,9 @@ HEADERS  += mainwindow.h \
     sqlitemview.h \
     dataviewer.h \
     preferences.h \
-    ui_dataviewer.h
+    ui_dataviewer.h \
+    QDwmWindow.hh \
+    MinGWFix.hh
 
 
 FORMS    += mainwindow.ui \
@@ -51,6 +53,22 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     icons/icons.qrc \
     ts/ts.qrc
+
+
+
+
+
+  DEFINES += _QDWM_MINGW
+
+
+
+
+
+
+
+
+
+
 
 
 

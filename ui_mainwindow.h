@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 2. Nov 00:52:29 2011
+** Created: Thu 3. Nov 00:27:02 2011
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -40,8 +40,15 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(400, 300);
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        centralWidget->setStyleSheet(QString::fromUtf8("#centralWidget{\n"
+"background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 146, 255, 39), stop:1 rgba(158, 185, 255, 21))\n"
+"}\n"
+"\n"
+"\n"
+""));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
