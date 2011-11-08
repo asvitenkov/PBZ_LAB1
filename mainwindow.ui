@@ -40,6 +40,29 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="exitAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>База данных</string>
+    </property>
+    <addaction name="createQueryAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Запросы</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_2"/>
+    <addaction name="action_3"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -50,6 +73,34 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="exitAction">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="createQueryAction">
+   <property name="text">
+    <string>Создать запрос</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Количество произведений группы</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Список дисков группы</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Список лидеров продаж текущего года</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

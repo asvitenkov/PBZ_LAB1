@@ -29,7 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!createConnection()) {
         exit(-1);
     }
+    dataViewer = NULL;
+    queryDialog = NULL;
+    schemaBrowser = NULL;
     createWindow();
+
+    AmounOfMusCompOfGroup *t = new AmounOfMusCompOfGroup();
+    t->show();
 //    TablesViewer *tv = new TablesViewer();
 //    tv->initialize();
 //    tv->show();
@@ -72,7 +78,13 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::queryExec(){
+    if(queryDialog==NULL) return;
     qDebug()<<queryDialog->statement();
+    SqlQueryModel *model = new SqlQueryModel();
+    model->setQuery(queryDialog->statement());
+    dataViewer->setTableModel(model,false);
+    dataViewer->setStatusText(queryDialog->statement());
+
 }
 
 
@@ -117,7 +129,6 @@ void MainWindow::createWindow(){
     schemaBrowser = new SchemaBrowser(0,Qt::Widget);
     schemaBrowser->tableTree->buildTree();
     schemaBrowser->buildPragmasTree();
-    schemaBrowser->show();
     schemaBrowser->setMinimumWidth(200);
 
 
@@ -127,11 +138,39 @@ void MainWindow::createWindow(){
 
     dataViewer = new DataViewer();
     dataViewer->setEnabled(true);
-    dataViewer->show();
     //dataViewer->setTableModel(new QSqlQueryModel(), false);
 
     //ui->pushButton->hide();
     ui->myLayout->addWidget(schemaBrowser);
     ui->myLayout->addWidget(dataViewer);
+    schemaBrowser->show();
+    dataViewer->show();
+
+//    queryDialog = new QueryEditorDialog();
+//    connect(queryDialog,SIGNAL(accepted()),this,SLOT(queryExec()));
+//    queryDialog->exec();
+
+    createActions();
+
+}
+
+
+
+void MainWindow::createActions(){
+    connect(ui->exitAction,SIGNAL(triggered()),this,SLOT(close()));
+    connect(ui->createQueryAction,SIGNAL(triggered()),this,SLOT(createQuery()));
+
+    //queryDialog->exec();
+}
+
+
+
+void MainWindow::createQuery(){
+    qDebug()<<"MainWindow::createQuery()";
+    if(queryDialog != NULL) queryDialog->deleteLater();
+    queryDialog = new QueryEditorDialog();
+    connect(queryDialog,SIGNAL(accepted()),this,SLOT(queryExec()));
+    queryDialog->exec();
+
 
 }

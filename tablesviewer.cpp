@@ -33,7 +33,6 @@ TablesViewer::~TablesViewer()
 
 QStringList TablesViewer::getAllTablesInDB(){
     QStringList listTables;
-    //listTables.push_back("------------------");
     QSqlQuery query;
     QString strQuery="SELECT NAME FROM sqlite_master where type = 'table'";
     if(!query.exec(strQuery)){

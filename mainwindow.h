@@ -6,20 +6,8 @@
 #include "queryeditordialog.h"
 #include "schemabrowser.h"
 #include "dataviewer.h"
+#include "amounofmuscompofgroup.h"
 
-
-//typedef struct
-//{
-//        int cid;
-//        QString name;
-//        QString type;
-//        bool notnull;
-//        QString defval;
-//        bool pk;
-//        QString comment;
-//}
-//DatabaseTableField;
-//typedef QList<DatabaseTableField> FieldList;
 
 namespace Ui {
     class MainWindow;
@@ -40,12 +28,15 @@ private:
     QSqlTableModel *model;
     SchemaBrowser *schemaBrowser;
     void createWindow();
+    void createActions();
 
 
 private slots:
     void queryExec();
     void testSlot();
     void treeItemActivated(QTreeWidgetItem * item, int column);
+    void createQuery();
+    //void createQueryslot();
 };
 
 #endif // MAINWINDOW_H

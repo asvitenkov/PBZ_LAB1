@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     sqlmodels.cpp \
     blobpreviewwidget.cpp \
     sqlitemview.cpp \
-    preferences.cpp
+    preferences.cpp \
+    amounofmuscompofgroup.cpp
 
 HEADERS  += mainwindow.h \
     tablesviewer.h \
@@ -39,7 +40,9 @@ HEADERS  += mainwindow.h \
     preferences.h \
     ui_dataviewer.h \
     QDwmWindow.hh \
-    MinGWFix.hh
+    MinGWFix.hh \
+    ui_mainwindow.h \
+    amounofmuscompofgroup.h
 
 
 FORMS    += mainwindow.ui \
@@ -48,7 +51,8 @@ FORMS    += mainwindow.ui \
     schemabrowser.ui \
     dataviewer.ui \
     blobpreviewwidget.ui \
-    sqlitemview.ui
+    sqlitemview.ui \
+    amounofmuscompofgroup.ui
 
 RESOURCES += \
     icons/icons.qrc \
@@ -59,6 +63,16 @@ RESOURCES += \
 
 
   DEFINES += _QDWM_MINGW
+
+
+
+
+
+
+
+
+
+
 
 
 

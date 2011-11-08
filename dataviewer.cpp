@@ -150,7 +150,7 @@ bool DataViewer::setTableModel(QAbstractItemModel * model, bool showButtons)
 	ui.itemView->setModel(model);
 	ui.tabWidget->setCurrentIndex(0);
 	resizeViewToContents(model);
-	setShowButtons(showButtons);
+        setShowButtons(showButtons);
 	
 	QString cached;
 	if (qobject_cast<QSqlQueryModel*>(model)->rowCount() != 0

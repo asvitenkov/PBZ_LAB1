@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu 3. Nov 00:27:02 2011
+** Created: Tue 8. Nov 23:31:54 2011
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -18,6 +18,7 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QStatusBar>
 #include <QtGui/QToolBar>
@@ -28,10 +29,14 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *exitAction;
+    QAction *createQueryAction;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QHBoxLayout *myLayout;
     QMenuBar *menuBar;
+    QMenu *menu;
+    QMenu *menu_2;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -41,6 +46,10 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(400, 300);
         MainWindow->setStyleSheet(QString::fromUtf8(""));
+        exitAction = new QAction(MainWindow);
+        exitAction->setObjectName(QString::fromUtf8("exitAction"));
+        createQueryAction = new QAction(MainWindow);
+        createQueryAction->setObjectName(QString::fromUtf8("createQueryAction"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setStyleSheet(QString::fromUtf8("#centralWidget{\n"
@@ -63,6 +72,10 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 400, 22));
+        menu = new QMenu(menuBar);
+        menu->setObjectName(QString::fromUtf8("menu"));
+        menu_2 = new QMenu(menuBar);
+        menu_2->setObjectName(QString::fromUtf8("menu_2"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -70,6 +83,11 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menu->menuAction());
+        menuBar->addAction(menu_2->menuAction());
+        menu->addAction(exitAction);
+        menu_2->addAction(createQueryAction);
 
         retranslateUi(MainWindow);
 
@@ -79,6 +97,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        exitAction->setText(QApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", 0, QApplication::UnicodeUTF8));
+        exitAction->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
+        createQueryAction->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\267\320\260\320\277\321\200\320\276\321\201", 0, QApplication::UnicodeUTF8));
+        menu->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", 0, QApplication::UnicodeUTF8));
+        menu_2->setTitle(QApplication::translate("MainWindow", "\320\221\320\260\320\267\320\260 \320\264\320\260\320\275\320\275\321\213\321\205", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
