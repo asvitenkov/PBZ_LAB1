@@ -78,7 +78,6 @@ void MainWindow::treeItemActivated(QTreeWidgetItem * item, int /*column*/)
                 else
                 {
                         SqlTableModel * model = new SqlTableModel();
-                        //model->setSchema(item->text(1));
                         model->setTable(item->text(0));
                         model->select();
                         model->setEditStrategy(SqlTableModel::OnManualSubmit);
@@ -102,17 +101,12 @@ void MainWindow::createWindow(){
 
     dataViewer = new DataViewer();
     dataViewer->setEnabled(true);
-    //dataViewer->setTableModel(new QSqlQueryModel(), false);
 
-    //ui->pushButton->hide();
     ui->myLayout->addWidget(schemaBrowser);
     ui->myLayout->addWidget(dataViewer);
     schemaBrowser->show();
     dataViewer->show();
 
-//    queryDialog = new QueryEditorDialog();
-//    connect(queryDialog,SIGNAL(accepted()),this,SLOT(queryExec()));
-//    queryDialog->exec();
 
     createActions();
 
@@ -124,8 +118,9 @@ void MainWindow::createActions(){
     connect(ui->exitAction,SIGNAL(triggered()),this,SLOT(close()));
     connect(ui->createQueryAction,SIGNAL(triggered()),this,SLOT(createQuery()));
     connect(ui->amountOfCompositionAction,SIGNAL(triggered()),this,SLOT(createAmountOfMusCompOfGroup()));
+    connect(ui->listOfAllGroupAlbumsAction,SIGNAL(triggered()),this,SLOT(createListOfAllGroupAlbums()));
+    connect(ui->topSalesAction,SIGNAL(triggered()),this,SLOT(createTopSalesAlbum()));
 
-    //queryDialog->exec();
 }
 
 
@@ -144,4 +139,24 @@ void MainWindow::createQuery(){
 void MainWindow::createAmountOfMusCompOfGroup(){
     AmounOfMusCompOfGroup *t = new AmounOfMusCompOfGroup();
     t->show();
+}
+
+
+void MainWindow::createListOfAllGroupAlbums(){
+    ListOfAllGroupAlbums *t = new ListOfAllGroupAlbums();
+    t->show();
+}
+
+
+void MainWindow::createTopSalesAlbum(){
+    QString str = "SELECT album_title FROM album WHERE id_album = (SELECT id_album FROM statistics_of_sales WHERE sold_for_this_year=(SELECT MAX(sold_for_this_year) FROM statistics_of_sales))";
+    //QString str = "SELECT * FROM statistics_of_sales";
+    SqlQueryModel * model = new SqlQueryModel();
+    model->setQuery(str);
+    //model->sort(5,Qt::AscendingOrder);
+    //model->removeColumn()
+    //model->itemData()
+    //model->setItemData();
+    dataViewer->setTableModel(model,true);
+    dataViewer->setStatusText(str);
 }

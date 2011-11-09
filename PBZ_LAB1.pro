@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     blobpreviewwidget.cpp \
     sqlitemview.cpp \
     preferences.cpp \
-    amounofmuscompofgroup.cpp
+    amounofmuscompofgroup.cpp \
+    listofallgroupalbums.cpp
 
 HEADERS  += mainwindow.h \
     tablesviewer.h \
@@ -39,10 +40,9 @@ HEADERS  += mainwindow.h \
     dataviewer.h \
     preferences.h \
     ui_dataviewer.h \
-    QDwmWindow.hh \
-    MinGWFix.hh \
-    ui_mainwindow.h \
-    amounofmuscompofgroup.h
+    amounofmuscompofgroup.h \
+    listofallgroupalbums.h \
+    ui_mainwindow.h
 
 
 FORMS    += mainwindow.ui \
@@ -52,7 +52,8 @@ FORMS    += mainwindow.ui \
     dataviewer.ui \
     blobpreviewwidget.ui \
     sqlitemview.ui \
-    amounofmuscompofgroup.ui
+    amounofmuscompofgroup.ui \
+    listofallgroupalbums.ui
 
 RESOURCES += \
     icons/icons.qrc \
@@ -63,6 +64,10 @@ RESOURCES += \
 
 
   DEFINES += _QDWM_MINGW
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-#include "amounofmuscompofgroup.h"
+#include "listofallgroupalbums.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QDebug>
@@ -6,7 +6,8 @@
 #include <QSqlQueryModel>
 #include <QFont>
 
-AmounOfMusCompOfGroup::AmounOfMusCompOfGroup(QWidget *parent) :
+
+ListOfAllGroupAlbums::ListOfAllGroupAlbums(QWidget *parent) :
     QWidget(parent)
 {
     ui.setupUi(this);
@@ -14,7 +15,7 @@ AmounOfMusCompOfGroup::AmounOfMusCompOfGroup(QWidget *parent) :
     ui.groupList->addItems(getAllMusGroupInDB());
 }
 
-void AmounOfMusCompOfGroup::changeEvent(QEvent *e)
+void ListOfAllGroupAlbums::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
     switch (e->type()) {
@@ -28,7 +29,7 @@ void AmounOfMusCompOfGroup::changeEvent(QEvent *e)
 
 
 
-void AmounOfMusCompOfGroup::currentIndexChangedSlot(QString aText){
+void ListOfAllGroupAlbums::currentIndexChangedSlot(QString aText){
     QSqlQuery query;
     // получаем айдишник группы для начала
     QString str="SELECT id_mus_group FROM \"main\".\"MUS_GROUP\" WHERE title ='%1';";
@@ -47,7 +48,7 @@ void AmounOfMusCompOfGroup::currentIndexChangedSlot(QString aText){
         qDebug()<<query.size();
         return;
     }
-    str = "SELECT id_mus_composition FROM \"main\".\"executor_of_mus_com\" WHERE isGroupComp = '1' AND id_mus_group = '%1';";
+    str = "SELECT album_title FROM \"main\".\"album\" WHERE isGroupAlbum = '1' AND id_mus_group = '%1';";
     str=str.arg(QString::number(id));
     if(!query.exec(str)){
         qDebug()<<query.lastError();
@@ -56,27 +57,19 @@ void AmounOfMusCompOfGroup::currentIndexChangedSlot(QString aText){
     int size = 0;
     ui.tableWidget->setRowCount(0);
     ui.tableWidget->setColumnWidth(0,200);
-    //ui.tableWidget->setColumnCount(1);
     while(query.next()){
         size++;
-        QSqlQuery searchQuery;
-        int idComp=-1;
-        idComp = query.value(query.record().indexOf("id_mus_composition")).toInt();
-        str = QString("SELECT title FROM MUSICAL_COMPOSITION WHERE id_mus_composition=%1").arg(idComp);
-        if(!searchQuery.exec(str)){
-            qDebug()<<query.lastError();
-            return;
-        }
-        searchQuery.next();
         ui.tableWidget->setRowCount(size);
         QTableWidgetItem *item = new QTableWidgetItem();
-        item->setText(searchQuery.value(searchQuery.record().indexOf("title")).toString());
+        item->setText(query.value(query.record().indexOf("album_title")).toString());
         ui.tableWidget->setItem(ui.tableWidget->rowCount()-1,0,item);
     }
     ui.totalAmount->setText(QString::number(size));
 }
 
-QStringList AmounOfMusCompOfGroup::getAllMusGroupInDB(){
+
+
+QStringList ListOfAllGroupAlbums::getAllMusGroupInDB(){
     qDebug()<<"AmounOfMusCompOfGroup::getAllMusGroupInDB()";
     QStringList listTables;
     QSqlQuery query;
@@ -93,7 +86,3 @@ QStringList AmounOfMusCompOfGroup::getAllMusGroupInDB(){
     }
     return listTables;
 }
-
-
-
-

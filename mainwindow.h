@@ -7,6 +7,7 @@
 #include "schemabrowser.h"
 #include "dataviewer.h"
 #include "amounofmuscompofgroup.h"
+#include "listofallgroupalbums.h"
 
 
 namespace Ui {
@@ -37,7 +38,8 @@ private slots:
     void treeItemActivated(QTreeWidgetItem * item, int column);
     void createQuery();
     void createAmountOfMusCompOfGroup();
-    //void createQueryslot();
+    void createListOfAllGroupAlbums();
+    void createTopSalesAlbum();
 };
 
 #endif // MAINWINDOW_H

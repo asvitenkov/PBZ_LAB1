@@ -57,8 +57,8 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
      <string>Запросы</string>
     </property>
     <addaction name="amountOfCompositionAction"/>
-    <addaction name="action_2"/>
-    <addaction name="action_3"/>
+    <addaction name="listOfAllGroupAlbumsAction"/>
+    <addaction name="topSalesAction"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -91,12 +91,12 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
     <string>Количество произведений группы</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="listOfAllGroupAlbumsAction">
    <property name="text">
     <string>Список дисков группы</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="topSalesAction">
    <property name="text">
     <string>Список лидеров продаж текущего года</string>
    </property>
