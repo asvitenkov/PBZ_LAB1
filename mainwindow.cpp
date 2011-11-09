@@ -33,42 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     queryDialog = NULL;
     schemaBrowser = NULL;
     createWindow();
-
-    AmounOfMusCompOfGroup *t = new AmounOfMusCompOfGroup();
-    t->show();
-//    TablesViewer *tv = new TablesViewer();
-//    tv->initialize();
-//    tv->show();
-
-//    queryDialog = new QueryEditorDialog();
-//    connect(queryDialog,SIGNAL(accepted()),this,SLOT(queryExec()));
-//    queryDialog->exec();
-
-
-
-
-
-//    connect(schemaBrowser->tableTree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
-//            this, SLOT(testSlot()));
-
-
-
-
-//    QSqlTableModel *model = new QSqlTableModel();
-//    model->setTable("mus_group");
-//    model->select();
-//    model->setEditStrategy(QSqlTableModel::OnFieldChange);
-//    QTableView *table = new QTableView();
-//    table->show();
-//    table->setModel(model);
-
-
-
-//    dataViewer = new DataViewer();
-//    dataViewer->setEnabled(true);
-//    dataViewer->show();
-    //dataViewer->setTableModel(new QSqlQueryModel(), false);
-
 }
 
 MainWindow::~MainWindow()
@@ -159,6 +123,7 @@ void MainWindow::createWindow(){
 void MainWindow::createActions(){
     connect(ui->exitAction,SIGNAL(triggered()),this,SLOT(close()));
     connect(ui->createQueryAction,SIGNAL(triggered()),this,SLOT(createQuery()));
+    connect(ui->amountOfCompositionAction,SIGNAL(triggered()),this,SLOT(createAmountOfMusCompOfGroup()));
 
     //queryDialog->exec();
 }
@@ -173,4 +138,10 @@ void MainWindow::createQuery(){
     queryDialog->exec();
 
 
+}
+
+
+void MainWindow::createAmountOfMusCompOfGroup(){
+    AmounOfMusCompOfGroup *t = new AmounOfMusCompOfGroup();
+    t->show();
 }

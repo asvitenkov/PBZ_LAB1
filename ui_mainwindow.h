@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 8. Nov 23:31:54 2011
+** Created: Wed 9. Nov 18:49:24 2011
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,12 +31,16 @@ class Ui_MainWindow
 public:
     QAction *exitAction;
     QAction *createQueryAction;
+    QAction *amountOfCompositionAction;
+    QAction *action_2;
+    QAction *action_3;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QHBoxLayout *myLayout;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
+    QMenu *menu_3;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -50,6 +54,12 @@ public:
         exitAction->setObjectName(QString::fromUtf8("exitAction"));
         createQueryAction = new QAction(MainWindow);
         createQueryAction->setObjectName(QString::fromUtf8("createQueryAction"));
+        amountOfCompositionAction = new QAction(MainWindow);
+        amountOfCompositionAction->setObjectName(QString::fromUtf8("amountOfCompositionAction"));
+        action_2 = new QAction(MainWindow);
+        action_2->setObjectName(QString::fromUtf8("action_2"));
+        action_3 = new QAction(MainWindow);
+        action_3->setObjectName(QString::fromUtf8("action_3"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setStyleSheet(QString::fromUtf8("#centralWidget{\n"
@@ -76,6 +86,8 @@ public:
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menuBar);
         menu_2->setObjectName(QString::fromUtf8("menu_2"));
+        menu_3 = new QMenu(menuBar);
+        menu_3->setObjectName(QString::fromUtf8("menu_3"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -86,8 +98,12 @@ public:
 
         menuBar->addAction(menu->menuAction());
         menuBar->addAction(menu_2->menuAction());
+        menuBar->addAction(menu_3->menuAction());
         menu->addAction(exitAction);
         menu_2->addAction(createQueryAction);
+        menu_3->addAction(amountOfCompositionAction);
+        menu_3->addAction(action_2);
+        menu_3->addAction(action_3);
 
         retranslateUi(MainWindow);
 
@@ -100,8 +116,12 @@ public:
         exitAction->setText(QApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", 0, QApplication::UnicodeUTF8));
         exitAction->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
         createQueryAction->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\267\320\260\320\277\321\200\320\276\321\201", 0, QApplication::UnicodeUTF8));
+        amountOfCompositionAction->setText(QApplication::translate("MainWindow", "\320\232\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276 \320\277\321\200\320\276\320\270\320\267\320\262\320\265\320\264\320\265\320\275\320\270\320\271 \320\263\321\200\321\203\320\277\320\277\321\213", 0, QApplication::UnicodeUTF8));
+        action_2->setText(QApplication::translate("MainWindow", "\320\241\320\277\320\270\321\201\320\276\320\272 \320\264\320\270\321\201\320\272\320\276\320\262 \320\263\321\200\321\203\320\277\320\277\321\213", 0, QApplication::UnicodeUTF8));
+        action_3->setText(QApplication::translate("MainWindow", "\320\241\320\277\320\270\321\201\320\276\320\272 \320\273\320\270\320\264\320\265\321\200\320\276\320\262 \320\277\321\200\320\276\320\264\320\260\320\266 \321\202\320\265\320\272\321\203\321\211\320\265\320\263\320\276 \320\263\320\276\320\264\320\260", 0, QApplication::UnicodeUTF8));
         menu->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", 0, QApplication::UnicodeUTF8));
         menu_2->setTitle(QApplication::translate("MainWindow", "\320\221\320\260\320\267\320\260 \320\264\320\260\320\275\320\275\321\213\321\205", 0, QApplication::UnicodeUTF8));
+        menu_3->setTitle(QApplication::translate("MainWindow", "\320\227\320\260\320\277\321\200\320\276\321\201\321\213", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -16,9 +16,7 @@ protected:
 
 private:
     Ui::AmounOfMusCompOfGroup ui;
-    QSqlTableModel *tableModel;
     QStringList getAllMusGroupInDB();
-
 
 private slots:
     void currentIndexChangedSlot(QString);

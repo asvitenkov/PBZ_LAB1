@@ -36,6 +36,7 @@ private slots:
     void testSlot();
     void treeItemActivated(QTreeWidgetItem * item, int column);
     void createQuery();
+    void createAmountOfMusCompOfGroup();
     //void createQueryslot();
 };
 
