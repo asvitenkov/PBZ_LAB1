@@ -1,10 +1,3 @@
-/*
-For general Sqliteman copyright and licensing information please refer
-to the COPYING file provided with the program. Following this notice may exist
-a copyright and/or license notice that predates the release of Sqliteman
-for which a new license (GPL+exception) is in place.
-*/
-
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -18,12 +11,8 @@ for which a new license (GPL+exception) is in place.
 #include <QDebug>
 
 #include "dataviewer.h"
-//#include "dataexportdialog.h"
 #include "sqlmodels.h"
-//#include "database.h"
-//#include "sqldelegate.h"
 #include "utils.h"
-//#include "blobpreviewwidget.h"
 
 
 DataViewer::DataViewer(QWidget * parent)

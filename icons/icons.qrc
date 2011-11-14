@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icons" >
+    <qresource prefix="/icons">
         <file>blob.png</file>
         <file>clear_table_contents.png</file>
         <file>close.png</file>
@@ -34,5 +34,10 @@
         <file>view.png</file>
         <file>preferences-desktop-display.png</file>
         <file>kate.png</file>
+        <file>app.png</file>
+        <file>database_mw.png</file>
+        <file>app_2.png</file>
+        <file>gallery1.png</file>
+        <file>db_add.png</file>
     </qresource>
 </RCC>

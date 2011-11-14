@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'queryeditordialog.ui'
 **
-** Created: Tue 1. Nov 18:45:02 2011
+** Created: Mon 14. Nov 22:48:51 2011
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -68,6 +68,9 @@ public:
         if (QueryEditorDialog->objectName().isEmpty())
             QueryEditorDialog->setObjectName(QString::fromUtf8("QueryEditorDialog"));
         QueryEditorDialog->resize(388, 398);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/db_add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        QueryEditorDialog->setWindowIcon(icon);
         gridLayout_2 = new QGridLayout(QueryEditorDialog);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         horizontalLayout = new QHBoxLayout();
@@ -89,7 +92,6 @@ public:
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
-        tab->setGeometry(QRect(0, 0, 368, 269));
         gridLayout = new QGridLayout(tab);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         columnView = new QListView(tab);
@@ -140,7 +142,6 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        tab_2->setGeometry(QRect(0, 0, 368, 269));
         gridLayout_3 = new QGridLayout(tab_2);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         andButton = new QRadioButton(tab_2);
@@ -159,7 +160,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 354, 157));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 344, 200));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout_3->addWidget(scrollArea, 2, 0, 1, 1);

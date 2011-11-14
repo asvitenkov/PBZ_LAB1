@@ -1,13 +1,6 @@
-/*
-For general Sqliteman copyright and licensing information please refer
-to the COPYING file provided with the program. Following this notice may exist
-a copyright and/or license notice that predates the release of Sqliteman
-for which a new license (GPL+exception) is in place.
-*/
 #include <QMouseEvent>
 #include <QApplication>
 
-//#include "database.h"
 #include "tabletree.h"
 #include "utils.h"
 #include <QtSql>
@@ -17,8 +10,6 @@ for which a new license (GPL+exception) is in place.
 
 
 
-/*! \brief This struct is a sqlite3 table column representation.
-Something like a system catalogue item */
 typedef struct
 {
         int cid;
@@ -31,14 +22,10 @@ typedef struct
 }
 DatabaseTableField;
 
-/*! \brief List of the attached databases ("schemas").
-Mapping name/filename */
 typedef QMap<QString,QString> DbAttach;
 
-//! \brief Table columns list.
 typedef QList<DatabaseTableField> FieldList;
 
-//! \brief A map with "object name"/"its parent" - schema
 typedef QMap<QString,QString> DbObjects;
 
 

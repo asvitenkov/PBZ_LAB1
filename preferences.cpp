@@ -1,12 +1,5 @@
-/*
-For general Sqliteman copyright and licensing information please refer
-to the COPYING file provided with the program. Following this notice may exist
-a copyright and/or license notice that predates the release of Sqliteman
-for which a new license (GPL+exception) is in place.
-*/
 #include <QSettings>
 #include <QApplication>
-//#include "qsci/qscilexersql.h"
 
 #include "preferences.h"
 
@@ -48,13 +41,6 @@ Preferences::Preferences(QObject *parent)
 	m_codeCompletionLength = s.value("prefs/sqleditor/completionLengthBox", 3).toInt();
 	m_useShortcuts = s.value("prefs/sqleditor/useShortcuts", false).toBool();
 	m_shortcuts = s.value("prefs/sqleditor/shortcuts", QMap<QString,QVariant>()).toMap();
-	// qscintilla
-        //QsciLexerSQL syntaxLexer();
-//        m_syDefaultColor = s.value("prefs/qscintilla/syDefaultColor",syntaxLexer.defaultColor(QsciLexerSQL::Default)).value<QColor>();
-//        m_syKeywordColor = s.value("prefs/qscintilla/syKeywordColor",syntaxLexer.defaultColor(QsciLexerSQL::Keyword)).value<QColor>();
-//        m_syNumberColor = s.value("prefs/qscintilla/syNumberColor",syntaxLexer.defaultColor(QsciLexerSQL::Number)).value<QColor>();
-//        m_syStringColor = s.value("prefs/qscintilla/syStringColor",syntaxLexer.defaultColor(QsciLexerSQL::SingleQuotedString)).value<QColor>();
-//        m_syCommentColor = s.value("prefs/qscintilla/syCommentColor",syntaxLexer.defaultColor(QsciLexerSQL::Comment)).value<QColor>();
 
         QColor color(Qt::red);
         m_syDefaultColor = color;

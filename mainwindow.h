@@ -40,6 +40,7 @@ private slots:
     void createAmountOfMusCompOfGroup();
     void createListOfAllGroupAlbums();
     void createTopSalesAlbum();
+    void addAlbum();
 };
 
 #endif // MAINWINDOW_H

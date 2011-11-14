@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Музыкальный магазин</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons/icons.qrc">
+    <normaloff>:/icons/database_mw.png</normaloff>:/icons/database_mw.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -51,6 +55,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
      <string>База данных</string>
     </property>
     <addaction name="createQueryAction"/>
+    <addaction name="addAlbumAction"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -101,8 +106,15 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
     <string>Список лидеров продаж текущего года</string>
    </property>
   </action>
+  <action name="addAlbumAction">
+   <property name="text">
+    <string>Добавить альбом</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

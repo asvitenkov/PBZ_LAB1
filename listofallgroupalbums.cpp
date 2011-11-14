@@ -32,7 +32,7 @@ void ListOfAllGroupAlbums::changeEvent(QEvent *e)
 void ListOfAllGroupAlbums::currentIndexChangedSlot(QString aText){
     QSqlQuery query;
     // получаем айдишник группы для начала
-    QString str="SELECT id_mus_group FROM \"main\".\"MUS_GROUP\" WHERE title ='%1';";
+    QString str="SELECT id_mus_group FROM MUS_GROUP WHERE title ='%1';";
     str=str.arg(aText);
     if(!query.exec(str)){
         qDebug()<<query.lastError();
@@ -48,23 +48,17 @@ void ListOfAllGroupAlbums::currentIndexChangedSlot(QString aText){
         qDebug()<<query.size();
         return;
     }
-    str = "SELECT album_title FROM \"main\".\"album\" WHERE isGroupAlbum = '1' AND id_mus_group = '%1';";
+    str = "SELECT album_title FROM album WHERE isGroupAlbum = '1' AND id_mus_group = '%1';";
     str=str.arg(QString::number(id));
     if(!query.exec(str)){
         qDebug()<<query.lastError();
         return;
     }
-    int size = 0;
-    ui.tableWidget->setRowCount(0);
-    ui.tableWidget->setColumnWidth(0,200);
-    while(query.next()){
-        size++;
-        ui.tableWidget->setRowCount(size);
-        QTableWidgetItem *item = new QTableWidgetItem();
-        item->setText(query.value(query.record().indexOf("album_title")).toString());
-        ui.tableWidget->setItem(ui.tableWidget->rowCount()-1,0,item);
-    }
-    ui.totalAmount->setText(QString::number(size));
+    QSqlQueryModel *model = new QSqlQueryModel(this);
+    model->setQuery(str);
+    ui.tableView->setModel(model);
+    ui.totalAmount->setText(QString::number(model->rowCount()));
+    model->setHeaderData(0,Qt::Horizontal,QVariant(QString::fromLocal8Bit("Название")));
 }
 
 

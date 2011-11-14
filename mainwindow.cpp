@@ -4,7 +4,7 @@
 #include <QtGui>
 #include "dataviewer.h"
 #include "sqlmodels.h"
-
+#include "addalbumform.h"
 
 static bool createConnection()
 {
@@ -32,7 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
     dataViewer = NULL;
     queryDialog = NULL;
     schemaBrowser = NULL;
+
+
     createWindow();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +68,7 @@ void MainWindow::treeItemActivated(QTreeWidgetItem * item, int /*column*/)
     qDebug()<<"run";
         if(!item)
                 return;
+        qDebug()<<item->type();
 
         if (item->type() == TableTree::TableType || item->type() == TableTree::ViewType
                 || item->type() == TableTree::SystemType)
@@ -83,6 +88,21 @@ void MainWindow::treeItemActivated(QTreeWidgetItem * item, int /*column*/)
                         model->setEditStrategy(SqlTableModel::OnManualSubmit);
                         dataViewer->setTableModel(model, true);
                 }
+        }
+        if(item->type() == TableTree::TriggerType){
+            //qDebug();
+            QSqlQuery query;
+            QString str = QString("Select sqlite_master.sql FROM sqlite_master WHERE type = 'trigger' AND name = '%1'").arg(item->text(0));
+            qDebug()<<str;
+            if(!query.exec(str)){
+                qDebug()<<query.lastError();
+                return;
+            }
+            if(!query.next()) return;
+            dataViewer->freeResources();
+            qDebug()<<query.value(query.record().indexOf("sql")).toString();
+            dataViewer->setStatusText(query.value(query.record().indexOf("sql")).toString());
+            qDebug()<<query.lastError();
         }
 }
 
@@ -120,6 +140,7 @@ void MainWindow::createActions(){
     connect(ui->amountOfCompositionAction,SIGNAL(triggered()),this,SLOT(createAmountOfMusCompOfGroup()));
     connect(ui->listOfAllGroupAlbumsAction,SIGNAL(triggered()),this,SLOT(createListOfAllGroupAlbums()));
     connect(ui->topSalesAction,SIGNAL(triggered()),this,SLOT(createTopSalesAlbum()));
+    connect(ui->addAlbumAction,SIGNAL(triggered()),this,SLOT(addAlbum()));
 
 }
 
@@ -138,25 +159,40 @@ void MainWindow::createQuery(){
 
 void MainWindow::createAmountOfMusCompOfGroup(){
     AmounOfMusCompOfGroup *t = new AmounOfMusCompOfGroup();
+    t->setParent(this,Qt::Window);
     t->show();
+
 }
 
 
 void MainWindow::createListOfAllGroupAlbums(){
     ListOfAllGroupAlbums *t = new ListOfAllGroupAlbums();
+    t->setParent(this,Qt::Window);
     t->show();
+
 }
 
 
 void MainWindow::createTopSalesAlbum(){
-    QString str = "SELECT album_title FROM album WHERE id_album = (SELECT id_album FROM statistics_of_sales WHERE sold_for_this_year=(SELECT MAX(sold_for_this_year) FROM statistics_of_sales))";
-    //QString str = "SELECT * FROM statistics_of_sales";
-    SqlQueryModel * model = new SqlQueryModel();
+    //QString str = "SELECT album_title FROM album WHERE id_album = (SELECT id_album FROM statistics_of_sales WHERE sold_for_this_year=(SELECT MAX(sold_for_this_year) FROM statistics_of_sales))";
+    QString str =
+            "SELECT ALBUM.album_title, STATISTICS_OF_SALES.sold_for_this_year "
+            "FROM  STATISTICS_OF_SALES "
+            "INNER JOIN ALBUM "
+            "ON STATISTICS_OF_SALES.id_album = ALBUM.id_album "
+            "LIMIT 3 ";
+    SqlQueryModel * model = new SqlQueryModel(this);
     model->setQuery(str);
-    //model->sort(5,Qt::AscendingOrder);
-    //model->removeColumn()
-    //model->itemData()
-    //model->setItemData();
+    model->setHeaderData(0,Qt::Horizontal,QVariant(QString::fromLocal8Bit("Название альбома")));
+    model->setHeaderData(1,Qt::Horizontal,QVariant(QString::fromLocal8Bit("Продано за этот год")));
     dataViewer->setTableModel(model,true);
     dataViewer->setStatusText(str);
+}
+
+
+
+void MainWindow::addAlbum(){
+    AddAlbumForm *t = new AddAlbumForm();
+    t->setWindowFlags(Qt::Dialog);
+    t->show();
 }

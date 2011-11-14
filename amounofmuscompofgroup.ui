@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Музыкальные произведения</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons/icons.qrc">
+    <normaloff>:/icons/app_2.png</normaloff>:/icons/app_2.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -20,13 +24,7 @@
       <widget class="QComboBox" name="groupList"/>
      </item>
      <item>
-      <widget class="QTableWidget" name="tableWidget">
-       <column>
-        <property name="text">
-         <string>Название</string>
-        </property>
-       </column>
-      </widget>
+      <widget class="QTableView" name="tableView"/>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -59,6 +57,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     sqlitemview.cpp \
     preferences.cpp \
     amounofmuscompofgroup.cpp \
-    listofallgroupalbums.cpp
+    listofallgroupalbums.cpp \
+    addalbumform.cpp
 
 HEADERS  += mainwindow.h \
     tablesviewer.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     ui_dataviewer.h \
     amounofmuscompofgroup.h \
     listofallgroupalbums.h \
-    ui_mainwindow.h
+    ui_mainwindow.h \
+    addalbumform.h
 
 
 FORMS    += mainwindow.ui \
@@ -53,7 +55,8 @@ FORMS    += mainwindow.ui \
     blobpreviewwidget.ui \
     sqlitemview.ui \
     amounofmuscompofgroup.ui \
-    listofallgroupalbums.ui
+    listofallgroupalbums.ui \
+    addalbumform.ui
 
 RESOURCES += \
     icons/icons.qrc \
@@ -64,6 +67,15 @@ RESOURCES += \
 
 
   DEFINES += _QDWM_MINGW
+
+
+
+
+
+
+
+
+
 
 
 
