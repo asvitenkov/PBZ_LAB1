@@ -41,6 +41,7 @@ private slots:
     void createListOfAllGroupAlbums();
     void createTopSalesAlbum();
     void addAlbum();
+    void addGroup();
 };
 
 #endif // MAINWINDOW_H

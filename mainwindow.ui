@@ -41,7 +41,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -55,7 +55,9 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
      <string>База данных</string>
     </property>
     <addaction name="createQueryAction"/>
+    <addaction name="separator"/>
     <addaction name="addAlbumAction"/>
+    <addaction name="AddGroupaction"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -109,6 +111,11 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(104, 
   <action name="addAlbumAction">
    <property name="text">
     <string>Добавить альбом</string>
+   </property>
+  </action>
+  <action name="AddGroupaction">
+   <property name="text">
+    <string>Добавить группу</string>
    </property>
   </action>
  </widget>

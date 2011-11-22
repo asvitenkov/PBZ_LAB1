@@ -5,6 +5,8 @@
 #include "dataviewer.h"
 #include "sqlmodels.h"
 #include "addalbumform.h"
+#include "tablesviewer.h"
+#include "addgroupform.h"
 
 static bool createConnection()
 {
@@ -34,14 +36,15 @@ MainWindow::MainWindow(QWidget *parent) :
     schemaBrowser = NULL;
 
 
-    createWindow();
 
+    createWindow();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    QSqlDatabase::database("MusShopDB.db").close();
 }
 
 
@@ -66,44 +69,48 @@ void MainWindow::treeItemActivated(QTreeWidgetItem * item, int /*column*/)
 {
 
     qDebug()<<"run";
-        if(!item)
-                return;
-        qDebug()<<item->type();
+    if(!item)
+        return;
+    qDebug()<<item->type();
 
-        if (item->type() == TableTree::TableType || item->type() == TableTree::ViewType
-                || item->type() == TableTree::SystemType)
+    if (item->type() == TableTree::TableType || item->type() == TableTree::ViewType
+            || item->type() == TableTree::SystemType)
+    {
+
+        dataViewer->freeResources();
+
+        if (item->type() == TableTree::ViewType || item->type() == TableTree::SystemType)
         {
-                dataViewer->freeResources();
-                if (item->type() == TableTree::ViewType || item->type() == TableTree::SystemType)
-                {
-                    SqlQueryModel * model = new SqlQueryModel();
-                    model->setQuery(QString("select * from \"%1\".\"%2\"").arg(item->text(1)).arg(item->text(0)));
-                    dataViewer->setTableModel(model, false);
-                }
-                else
-                {
-                        SqlTableModel * model = new SqlTableModel();
-                        model->setTable(item->text(0));
-                        model->select();
-                        model->setEditStrategy(SqlTableModel::OnManualSubmit);
-                        dataViewer->setTableModel(model, true);
-                }
+            qDebug()<<"create sqlquery";
+            SqlQueryModel * model = new SqlQueryModel();
+            model->setQuery(QString("select * from \"%1\".\"%2\"").arg(item->text(1)).arg(item->text(0)));
+            dataViewer->setTableModel(model, true);
         }
-        if(item->type() == TableTree::TriggerType){
-            //qDebug();
-            QSqlQuery query;
-            QString str = QString("Select sqlite_master.sql FROM sqlite_master WHERE type = 'trigger' AND name = '%1'").arg(item->text(0));
-            qDebug()<<str;
-            if(!query.exec(str)){
-                qDebug()<<query.lastError();
-                return;
-            }
-            if(!query.next()) return;
-            dataViewer->freeResources();
-            qDebug()<<query.value(query.record().indexOf("sql")).toString();
-            dataViewer->setStatusText(query.value(query.record().indexOf("sql")).toString());
+        else
+        {
+            qDebug()<<"create Table";
+            SqlTableModel * model = new SqlTableModel();
+            model->setTable(item->text(0));
+            model->select();
+            model->setEditStrategy(SqlTableModel::OnManualSubmit);
+            dataViewer->setTableModel(model, true);
+        }
+    }
+    if(item->type() == TableTree::TriggerType){
+        //qDebug();
+        QSqlQuery query;
+        QString str = QString("Select sqlite_master.sql FROM sqlite_master WHERE type = 'trigger' AND name = '%1'").arg(item->text(0));
+        qDebug()<<str;
+        if(!query.exec(str)){
             qDebug()<<query.lastError();
+            return;
         }
+        if(!query.next()) return;
+        dataViewer->freeResources();
+        qDebug()<<query.value(query.record().indexOf("sql")).toString();
+        dataViewer->setStatusText(query.value(query.record().indexOf("sql")).toString());
+        qDebug()<<query.lastError();
+    }
 }
 
 
@@ -113,6 +120,7 @@ void MainWindow::createWindow(){
     schemaBrowser->tableTree->buildTree();
     schemaBrowser->buildPragmasTree();
     schemaBrowser->setMinimumWidth(200);
+    schemaBrowser->setMaximumWidth(300);
 
 
     connect(schemaBrowser->tableTree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
@@ -141,6 +149,7 @@ void MainWindow::createActions(){
     connect(ui->listOfAllGroupAlbumsAction,SIGNAL(triggered()),this,SLOT(createListOfAllGroupAlbums()));
     connect(ui->topSalesAction,SIGNAL(triggered()),this,SLOT(createTopSalesAlbum()));
     connect(ui->addAlbumAction,SIGNAL(triggered()),this,SLOT(addAlbum()));
+    connect(ui->AddGroupaction,SIGNAL(triggered()),this,SLOT(addGroup()));
 
 }
 
@@ -185,7 +194,7 @@ void MainWindow::createTopSalesAlbum(){
     model->setQuery(str);
     model->setHeaderData(0,Qt::Horizontal,QVariant(QString::fromLocal8Bit("Название альбома")));
     model->setHeaderData(1,Qt::Horizontal,QVariant(QString::fromLocal8Bit("Продано за этот год")));
-    dataViewer->setTableModel(model,true);
+    dataViewer->setTableModel(model,false);
     dataViewer->setStatusText(str);
 }
 
@@ -194,5 +203,13 @@ void MainWindow::createTopSalesAlbum(){
 void MainWindow::addAlbum(){
     AddAlbumForm *t = new AddAlbumForm();
     t->setWindowFlags(Qt::Dialog);
+    t->show();
+
+}
+
+
+void MainWindow::addGroup(){
+    AddGroupForm *t = new AddGroupForm(0);
+    t->setParent(this,Qt::Window);
     t->show();
 }

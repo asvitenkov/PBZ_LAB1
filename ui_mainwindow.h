@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon 14. Nov 22:47:23 2011
+** Created: Tue 22. Nov 21:12:13 2011
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -35,6 +35,7 @@ public:
     QAction *listOfAllGroupAlbumsAction;
     QAction *topSalesAction;
     QAction *addAlbumAction;
+    QAction *AddGroupaction;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QHBoxLayout *myLayout;
@@ -66,6 +67,8 @@ public:
         topSalesAction->setObjectName(QString::fromUtf8("topSalesAction"));
         addAlbumAction = new QAction(MainWindow);
         addAlbumAction->setObjectName(QString::fromUtf8("addAlbumAction"));
+        AddGroupaction = new QAction(MainWindow);
+        AddGroupaction->setObjectName(QString::fromUtf8("AddGroupaction"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setStyleSheet(QString::fromUtf8("#centralWidget{\n"
@@ -87,7 +90,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 22));
+        menuBar->setGeometry(QRect(0, 0, 400, 20));
         menu = new QMenu(menuBar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menuBar);
@@ -107,7 +110,9 @@ public:
         menuBar->addAction(menu_3->menuAction());
         menu->addAction(exitAction);
         menu_2->addAction(createQueryAction);
+        menu_2->addSeparator();
         menu_2->addAction(addAlbumAction);
+        menu_2->addAction(AddGroupaction);
         menu_3->addAction(amountOfCompositionAction);
         menu_3->addAction(listOfAllGroupAlbumsAction);
         menu_3->addAction(topSalesAction);
@@ -127,6 +132,7 @@ public:
         listOfAllGroupAlbumsAction->setText(QApplication::translate("MainWindow", "\320\241\320\277\320\270\321\201\320\276\320\272 \320\264\320\270\321\201\320\272\320\276\320\262 \320\263\321\200\321\203\320\277\320\277\321\213", 0, QApplication::UnicodeUTF8));
         topSalesAction->setText(QApplication::translate("MainWindow", "\320\241\320\277\320\270\321\201\320\276\320\272 \320\273\320\270\320\264\320\265\321\200\320\276\320\262 \320\277\321\200\320\276\320\264\320\260\320\266 \321\202\320\265\320\272\321\203\321\211\320\265\320\263\320\276 \320\263\320\276\320\264\320\260", 0, QApplication::UnicodeUTF8));
         addAlbumAction->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\260\320\273\321\214\320\261\320\276\320\274", 0, QApplication::UnicodeUTF8));
+        AddGroupaction->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\263\321\200\321\203\320\277\320\277\321\203", 0, QApplication::UnicodeUTF8));
         menu->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", 0, QApplication::UnicodeUTF8));
         menu_2->setTitle(QApplication::translate("MainWindow", "\320\221\320\260\320\267\320\260 \320\264\320\260\320\275\320\275\321\213\321\205", 0, QApplication::UnicodeUTF8));
         menu_3->setTitle(QApplication::translate("MainWindow", "\320\227\320\260\320\277\321\200\320\276\321\201\321\213", 0, QApplication::UnicodeUTF8));

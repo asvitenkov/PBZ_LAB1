@@ -136,7 +136,7 @@ bool DataViewer::setTableModel(QAbstractItemModel * model, bool showButtons)
 			SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
 			this,
 			SLOT(tableView_selectionChanged(const QItemSelection &, const QItemSelection &)));
-	ui.itemView->setModel(model);
+        ui.itemView->setModel(model);
 	ui.tabWidget->setCurrentIndex(0);
 	resizeViewToContents(model);
         setShowButtons(showButtons);
@@ -226,6 +226,7 @@ void DataViewer::addRow()
 {
     qDebug()<<"DataViewer::addRow()";
     SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
+    //SqlTableModel * model = dynamic_cast<SqlTableModel *>(ui.tableView->model());
     if(model)
     {
         qDebug()<<"cast run";
@@ -237,9 +238,11 @@ void DataViewer::addRow()
 
 void DataViewer::removeRow()
 {
+
         SqlTableModel * model = qobject_cast<SqlTableModel *>(ui.tableView->model());
 	if(model)
 	{
+                qDebug()<<"DataViewer::removeRow()";
 		model->removeRows(ui.tableView->currentIndex().row(), 1);
 		setShowButtons(true);
 	}
